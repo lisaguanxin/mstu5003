@@ -4,8 +4,9 @@
 var numPizzas;
 var subTotal;
 var total;
-var hasDiscount = Boolean('false'); // Hint for prompts
-
+var hasDiscount = false;
+var useEnterCode;
+var discountResponse;
 // By convention, these variables represent CONSTANTS (unchanging values)
 var DISCOUNTCODE = "ChicagoStyleNumberOne";
 var DISCOUNTRATE;
@@ -14,9 +15,33 @@ var DISCOUNTRATE;
 var customerName = prompt('What is your name?');
 
 /* prompt for the following: 1) number of pizzas in order, 2) Whether they have a discount, 3) The discount code (if they indicated they have one.) */
+var numPizzas = prompt("How many pizzas do you want?");
+numPizzas = Number(numPizzas);
+console.log("typeof numPizzas, numPizzas");
+
+var discountResponse = prompt('Do you have a discount? Yes or No');
+if (discountResponse === 'Yes') {
+    hasDiscount = true;
+} else {
+    hasDiscount = false;
+}
+// hasDiscount already a Boolean, can write if (hasDiscount)
+if (hasDiscount === true) {
+    prompt("What is the code?");
+}
 
 /* Write 4 functions: */
 // Function that checks if the discount code the user gives matches the known discount code. Does not return anything but will set the has discount state to true if it matches. It will alert the user whether the code worked or not.
+function checkCode(code) {
+    if (DISCOUNTCODE === code){
+        hasDiscount = true;
+		}  else {
+    	hasDiscount = false;
+    	alert('Wrong code, no discount');
+		}
+}
+
+checkCode(userEnterCode);
 
 // Function that calculates subtotal based on number of pizzas, flat rate per pizza, and discount. It should return a number.
 
@@ -33,7 +58,7 @@ var customerName = prompt('What is your name?');
 
 // This function will write the following message to the <pre> element in HTML. New lines are indicated by \n
 function writeToPre(text) {
-	document.getElementById('info').innerHTML = text;
+    document.getElementById('info').innerHTML = text;
 }
 var message = "Hello, Jin.\nYour order is pending this program.";
 writeToPre(message);
